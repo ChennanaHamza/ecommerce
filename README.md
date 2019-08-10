@@ -4,9 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Features 
 
-1-Product list page
-2-Sort by low and high price
-3-Filter by category and title
+1-Product list page<br/>
+2-Sort by low and high price<br/>
+3-Filter by category and title<br/>
 
 
 ## Development server
