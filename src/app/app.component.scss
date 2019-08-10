@@ -28,10 +28,6 @@ article
     margin-right: 20px;
     flex: 3.4;
 }
-img{
-    height: 120px;
-    width: auto;
-}
 p{
     color: gray;
    margin:-2px;
@@ -52,8 +48,6 @@ p{
 
   @media all and (max-width: 1024px){
 
-   
-    
     section
     {
         flex-direction: column;
@@ -63,5 +57,14 @@ p{
         width: auto;
         margin-bottom: 15px;
     }
+    
+  }
+  @media all and (max-width: 512px){
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 10px;
+      }
     
   }
