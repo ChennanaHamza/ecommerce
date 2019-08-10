@@ -9,6 +9,10 @@ import { CategoryComponent } from './category/category.component';
 import { PricehighComponent } from './pricehigh/pricehigh.component';
 import { PricelowComponent } from './pricelow/pricelow.component';
 import { SingleproductComponent } from './singleproduct/singleproduct.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -23,6 +27,9 @@ import { SingleproductComponent } from './singleproduct/singleproduct.component'
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
     AppRoutingModule,
     FormsModule
   ],

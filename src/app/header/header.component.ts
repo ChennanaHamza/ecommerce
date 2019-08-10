@@ -9,7 +9,7 @@ import { ProductService } from '../product.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() produits : any[];
+  @Input() products : any[];
   @Output() filterproducts = new EventEmitter();
   searchtext : string;
   constructor(private productservice : ProductService) { }
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   }
   filterproductss(){
-    this.filterproducts.emit(this.productservice.filterbysearch(this.searchtext));
+    this.filterproducts.emit(this.productservice.filterbysearch(this.searchtext,this.productservice.list));
   }
   
 

@@ -8,27 +8,20 @@ import { ProductService } from '../product.service';
 })
 export class CategoryComponent implements OnInit {
 
-  @Input() produits : any[];
   @Output() filterbycategorie = new EventEmitter();
   filter = { electronics: true, menclothes: true, womenclothes: true, accessory: true  };
   constructor(private productservice : ProductService) { }
-
+  
   ngOnInit() {
   }
-
   filterChange() {
-
       this.filterbycategorie.emit(
-        this.productservice.produits.filter(x => 
+        this.productservice.list.filter(x => 
           (x.category === 'Accessory' && this.filter.accessory)
           || (x.category === 'Men clothes' && this.filter.menclothes)
           || (x.category === 'Women clothes' && this.filter.womenclothes)
           || (x.category === 'Electronics' && this.filter.electronics)
        )
-        
-        );
-    
-  
+      );
   }
-
 }

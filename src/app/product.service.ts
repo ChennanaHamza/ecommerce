@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Produit } from './models/produit.model';
 
 
 
@@ -7,49 +11,32 @@ import { Injectable } from '@angular/core';
 })
 export class ProductService {
 
-    produits = [
-        {
-          title: 'T shirt ',
-          price: 100,
-          category:'Men clothes',
-          description:'Black t shirt',
-          imgurl:'assets/img/tshirt.jpeg'
+    private productCollection: AngularFirestoreCollection<Produit>;
+    private products: Observable<Produit[]>;
+    public list : Array<any>;
 
-        },
-        {
-            title: 'Dress ',
-            price: 2000,
-            category:'Women clothes',
-            description:'Pink dress',
-            imgurl:'assets/img/robe.jpeg'
-        },
-        {
-            title: 'Watch ',
-            price: 500,
-            category:'Accessory',
-            description:'Black watch',
-            imgurl:'assets/img/watch.jpeg'
-        },
-        {
-            title: 'Iphone 8 ',
-            price: 5000,
-            category:'Electronics',
-            description:'Iphone 8 128gb',
-            imgurl:'assets/img/iphone.jpg'
-        },
-        {
-            title: 'shirt ',
-            price: 300,
-            category:'Men clothes',
-            description:'Chinesse style shirt ',
-            imgurl:'assets/img/chemise.jpg'
-  
+   constructor(private db: AngularFirestore) {
+        this.productCollection = db.collection<Produit>('Produits');
+        const id = db.createId();
+        this.products = this.productCollection.snapshotChanges().pipe(map(actions => {
+            return actions.map(a => {
+              const data = a.payload.doc.data();
+              const id = a.payload.doc.id;
+              return { id, ...data };
+            });
+          })
+        );
+        this.getproducts().subscribe(
+          result =>{
+            this.list=result;
           }
-
-      ];
-
-    filterbysearch(searchtext : string){
-        return this.produits.filter(x => 
+        )
+      }
+      getproducts() {
+        return this.products;
+      }
+    filterbysearch(searchtext : string,list){
+        return list.filter(x => 
             (x.title.toLowerCase().includes(searchtext))
           );
     }
@@ -59,18 +46,15 @@ export class ProductService {
             return b.price - a.price;
         });
         return produits;
-        
-
-
     }
     sortbypricelow(produits : any[]){
-        
         produits.sort(function(a,b) {
             return a.price - b.price;
         });
         return produits;
 
     }
+   
     
       
     

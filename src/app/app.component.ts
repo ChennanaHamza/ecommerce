@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from './product.service';
+import { Produit } from './models/produit.model';
 
 @Component({
   selector: 'app-root',
@@ -8,23 +9,15 @@ import { ProductService } from './product.service';
 })
 export class AppComponent {
   title = 'ecommerce';
-  produits : any[]=[];
+  products : Array<any>;
 
-  
   constructor(private productservice : ProductService) { }
 
   ngOnInit() {
-
-    this.produits=this.productservice.produits;
-
-
-  }
-  sorthigh(){
-    this.productservice.sortbypricehigh(this.produits);
-  }
-
-  sortlow(){
-    this.productservice.sortbypricelow(this.produits);
-
+    this.productservice.getproducts().subscribe(
+      result =>{
+        this.products=result;
+      }
+    )
   }
 }

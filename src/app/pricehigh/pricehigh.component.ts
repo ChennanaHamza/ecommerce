@@ -9,14 +9,13 @@ import { ProductService } from '../product.service';
 })
 export class PricehighComponent implements OnInit {
 
-  @Input() produits:any[];
   @Output() sortpricehigh = new EventEmitter();
   constructor(private productservice :ProductService) { }
 
   ngOnInit() {
   }
   sorthigh(){
-    this.sortpricehigh.emit(this.productservice.sortbypricehigh(this.produits));
+    this.sortpricehigh.emit(this.productservice.sortbypricehigh(this.productservice.list));
   }
 
 }

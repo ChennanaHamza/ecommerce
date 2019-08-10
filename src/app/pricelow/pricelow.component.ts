@@ -8,14 +8,12 @@ import { ProductService } from '../product.service';
 })
 export class PricelowComponent implements OnInit {
 
-  @Input() produits:any[];
   @Output() sortpricelow = new EventEmitter();
   constructor(private productservice :ProductService) { }
 
   ngOnInit() {
   }
   sortlow(){
-    this.sortpricelow.emit(this.productservice.sortbypricelow(this.produits));
+    this.sortpricelow.emit(this.productservice.sortbypricelow(this.productservice.list));
   }
-
 }
