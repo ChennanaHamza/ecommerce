@@ -1,0 +1,15 @@
+<div class="panel panel-default" style="margin-top: 10px;">
+    <div class="panel-heading">
+      <p class="panel-title category">CATEGORY</p>
+    </div>
+    <div class="panel-body">
+        <input type="checkbox"  [(ngModel)]="filter.menclothes" (ngModelChange)="filterChange()">
+        <label>Men clothes</label><br>
+        <input type="checkbox"[(ngModel)]="filter.electronics" (ngModelChange)="filterChange()">
+        <label>Electronics</label><br>
+        <input type="checkbox" [(ngModel)]="filter.womenclothes" (ngModelChange)="filterChange()">
+        <label>Woman clothes</label><br>
+        <input type="checkbox" [(ngModel)]="filter.accessory" (ngModelChange)="filterChange()">
+        <label>Accessory</label><br>
+    </div>
+  </div>

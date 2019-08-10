@@ -38,7 +38,7 @@ export class ProductService {
             imgurl:'assets/img/iphone.jpg'
         },
         {
-            title: 'Shirt ',
+            title: 'shirt ',
             price: 300,
             category:'Men clothes',
             description:'Chinesse style shirt ',
@@ -48,14 +48,17 @@ export class ProductService {
 
       ];
 
-    filterbycategorie(){
-
+    filterbysearch(searchtext : string){
+        return this.produits.filter(x => 
+            (x.title.toLowerCase().includes(searchtext))
+          );
     }
-
+    
     sortbypricehigh(produits : any[]){
         produits.sort(function(a,b) {
             return b.price - a.price;
         });
+        return produits;
         
 
 
@@ -65,18 +68,10 @@ export class ProductService {
         produits.sort(function(a,b) {
             return a.price - b.price;
         });
-
-
-    }
-    search(){
+        return produits;
 
     }
-
     
-    
-
-   
-
       
     
 }

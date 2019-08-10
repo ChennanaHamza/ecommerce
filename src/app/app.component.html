@@ -1,1 +1,30 @@
-<app-listproduct></app-listproduct>
+<app-header (filterproducts)="produits=$event" [produits]=produits ></app-header>
+
+<div id="bloc_page">
+        <section>
+            <aside>
+                <app-category (filterbycategorie)="produits=$event" [produits]=produits ></app-category>
+              </aside>
+          <article style="margin-top: 22px;">
+        
+                <div style="display:inline-block;margin-bottom: -10px;">
+                    <p class="title">Product list </p>
+                </div>
+                <div style="margin-bottom: -10px; float:right;">
+                    <p>Price : 
+                        <app-pricelow (sortpricelow)="produits=$event" [produits]=produits ></app-pricelow>
+                        <app-pricehigh (sortpricehigh)="produits=$event" [produits]=produits ></app-pricehigh>
+                    </p>  
+                </div>
+                <hr>
+                <div class="grid-container">
+                
+                    <div *ngFor="let produit of produits" >
+                        <div class="grid-item">
+                            <app-singleproduct [produit]=produit></app-singleproduct>
+                        </div>
+                    </div>
+                </div>
+          </article>  
+        </section>
+      </div>
