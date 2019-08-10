@@ -9,7 +9,6 @@ import { ProductService } from '../product.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() products : any[];
   @Output() filterproducts = new EventEmitter();
   searchtext : string;
   constructor(private productservice : ProductService) { }
